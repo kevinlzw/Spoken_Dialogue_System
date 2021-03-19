@@ -42,9 +42,9 @@ class Order:
 
     def __str__(self):
         if self.pizza:
-            return '{} {} pizza with {} crust and {} toppings.'.format(self.size, self.pizza, self.crust, ','.join(self.topping))
+            return '{} {} pizza with {} crust and {} toppings'.format(self.size, self.pizza, self.crust, ','.join(self.topping))
         else:
-            return '{} pizza with {} crust and {} toppings.'.format(self.size, self.crust, ','.join(self.topping))
+            return '{} pizza with {} crust and {} toppings'.format(self.size, self.crust, ','.join(self.topping))
 
     def ifOrderStarted(self):
         return not (

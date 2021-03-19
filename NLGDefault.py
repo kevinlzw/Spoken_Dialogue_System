@@ -53,30 +53,25 @@ class NLGDefault:
                         s += ', ' + confirm_phrase[key].format(','.join(dialogAct.info[key]))
                     else:
                         s += ', ' + confirm_phrase[key].format(dialogAct.info[key])
-            return s
-        if dialogAct.DialogActType == DialogActTypes.REQUEST:
+        elif dialogAct.DialogActType == DialogActTypes.REQUEST:
             if dialogAct.info[1]:
                 s = dialogAct.info[1] + request_phrase[dialogAct.info[0]]
-                return s
-            s = request_phrase[dialogAct.info[0]]
-            return s
+            else:
+                s = request_phrase[dialogAct.info[0]]
         elif dialogAct.DialogActType == DialogActTypes.REVISE:
             s = "Okay, what is your new {}?".format(dialogAct.info)
-            return s
         elif dialogAct.DialogActType == DialogActTypes.UNDEFINED:
             s = "I don't understand, can you say it again?"
-            return s
         elif dialogAct.DialogActType == DialogActTypes.GOODBYE:
             s = "Thank you, your order for a {} pizza is on the way".format(dialogAct.info)
-            return s
         elif dialogAct.DialogActType == DialogActTypes.REORDER:
             s = "Please type in your phone number."
-            return s
         elif dialogAct.DialogActType == DialogActTypes.RETURN_CHECK:
             s = "Great, thank you. I see there is an order for a {} pizza currently on its way".format(dialogAct.info)
-            return s
         elif dialogAct.DialogActType == DialogActTypes.RECOMMEND:
             s = ''
             for item in dialogAct.info:
                 s += recommend_phrase[item]
-            return s
+        if dialogAct.general_info:
+            s = dialogAct.general_info + s
+        return s

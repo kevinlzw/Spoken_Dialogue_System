@@ -4,7 +4,7 @@ from ASRDefault import ASRDefault
 from NLUDefault import NLUDefault
 from NLGDefault import NLGDefault
 from T2SDefault import T2SDefault, FileCannotPlayError
-from FrameDMSimple import FrameDMSimple
+from FrameDM import FrameDMSimple
 
 
 def main():

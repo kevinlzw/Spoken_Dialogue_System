@@ -6,3 +6,4 @@ class DialogAct:
     def __init__(self, dialogActType=None):
         self.DialogActType = dialogActType
         self.info = None
+        self.general_info = None

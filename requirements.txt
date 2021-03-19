@@ -3,3 +3,4 @@ gTTS~=2.2.2
 nltk~=3.5
 sklearn~=0.0
 scikit-learn~=0.24.1
+pyaudio

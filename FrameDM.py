@@ -14,6 +14,7 @@ class FrameDMSimple:
         self.status = None
         self.info = None
         self.confirm_saved_info = None
+        self.NLG_output = None
 
     def execute(self, inputStr):
         # apply the NLU component
@@ -31,6 +32,11 @@ class FrameDMSimple:
 
     def trackState(self, newSemanticFrame, sentiment_score):
         # update self.DialogFrame based on the contents of newSemanticFrame
+        if self.status == 'GIVE_RECOMMEND':
+            if sentiment_score > 0.3:
+                self.NLG_output = 'I am glad you found it useful! '
+            elif sentiment_score < 0.3:
+                self.NLG_output = 'I am sorry my recommendation did not help. '
         if newSemanticFrame.Intent == 'reorder_favorite':
             self.status = 'REQUEST_phone_reorder'
             self.info = None
@@ -151,4 +157,7 @@ class FrameDMSimple:
         elif self.status == 'GIVE_RECOMMEND':
             dialogAct.DialogActType = DialogActTypes.RECOMMEND
             dialogAct.info = self.info
+        if self.NLG_output:
+            dialogAct.general_info = self.NLG_output
+            self.NLG_output = None
         return dialogAct

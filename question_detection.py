@@ -3,6 +3,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.ensemble import GradientBoostingClassifier
 import pickle
 
+from sklearn.metrics import classification_report
+
 if __name__ == '__main__':
     posts = nltk.corpus.nps_chat.xml_posts()
 
@@ -38,6 +40,6 @@ if __name__ == '__main__':
 
 
 
-    # predictions_rf = gb.predict(X_test)
+    predictions_rf = gb.predict(X_test)
 
-    # print(classification_report(y_test, predictions_rf))
+    print(classification_report(y_test, predictions_rf))
