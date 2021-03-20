@@ -97,7 +97,7 @@ class FrameDMSimple:
                 self.info.extend(newSemanticFrame.Slots['recommend'])
         else:
             self.status = 'NEXT_THING_TO_ASK'
-            if sentiment_score >= 0.1:
+            if sentiment_score >= 0.2:
                 self.info = 'compliment'
                 self.confirm_saved_info = None
             elif -0.1 >= sentiment_score > 0.5:

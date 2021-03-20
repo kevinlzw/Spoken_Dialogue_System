@@ -45,8 +45,16 @@ class NLUDefault:
 
         for crust in PizzaMenu.crusts:
             if crust.lower() in input_str:
-                sf.Slots['crust'] = crust
-                sf.Intent = "order_pizza"
+                ifcontain = True
+                if crust.lower() == 'thin':
+                    ifcontain = False
+                    for m in re.finditer('thin', input_str):
+                        if len(input_str) == m.end() or input_str[m.start():m.end()+1] != 'think':
+                            ifcontain = True
+                            break
+                if ifcontain:
+                    sf.Slots['crust'] = crust
+                    sf.Intent = "order_pizza"
 
         for side in PizzaMenu.sides:
             if side.lower() in input_str:
